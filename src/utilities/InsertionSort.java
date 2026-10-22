@@ -1,33 +1,34 @@
 package utilities;
 
 import java.util.Comparator;
+import products.Product;
 
 /**
- * Sorts items from largest to smallest.
+ * Insertion sort for products.
  */
 public class InsertionSort
 {
 	/**
-	 * Sorts the array using insertion sort.
+	 * Sorts from largest to smallest.
 	 *
-	 * @param <T> item type
-	 * @param array items to sort
-	 * @param comparator comparison to use, or null for compareTo
+	 * @param array products to sort
+	 * @param comparator comparison rule, or null for compareTo
 	 */
-	public static <T extends Comparable<? super T>> void sort(
-			T[] array, Comparator<? super T> comparator)
+	public static void sort(Product[] array, Comparator<Product> comparator)
 	{
 		for (int i = 1; i < array.length; i++)
 		{
-			T current = array[i];
+			Product current = array[i];
 			int j = i - 1;
 
 			while (j >= 0 && Order.comesFirst(current, array[j], comparator))
 			{
+				// Move the smaller product right.
 				array[j + 1] = array[j];
 				j--;
 			}
 
+			// Insert the saved product.
 			array[j + 1] = current;
 		}
 	}

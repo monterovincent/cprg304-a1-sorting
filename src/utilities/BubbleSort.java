@@ -1,21 +1,20 @@
 package utilities;
 
 import java.util.Comparator;
+import products.Product;
 
 /**
- * Sorts items from largest to smallest.
+ * Bubble sort for products.
  */
 public class BubbleSort
 {
 	/**
-	 * Sorts the array using bubble sort.
+	 * Sorts from largest to smallest.
 	 *
-	 * @param <T> item type
-	 * @param array items to sort
-	 * @param comparator comparison to use, or null for compareTo
+	 * @param array products to sort
+	 * @param comparator comparison rule, or null for compareTo
 	 */
-	public static <T extends Comparable<? super T>> void sort(
-			T[] array, Comparator<? super T> comparator)
+	public static void sort(Product[] array, Comparator<Product> comparator)
 	{
 		for (int end = array.length - 1; end > 0; end--)
 		{
@@ -25,7 +24,8 @@ public class BubbleSort
 			{
 				if (Order.comesFirst(array[i + 1], array[i], comparator))
 				{
-					T temp = array[i];
+					// Swap the two products.
+					Product temp = array[i];
 					array[i] = array[i + 1];
 					array[i + 1] = temp;
 
@@ -33,6 +33,7 @@ public class BubbleSort
 				}
 			}
 
+			// Stop if no products moved.
 			if (!swapped)
 			{
 				break;
